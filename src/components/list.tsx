@@ -1,12 +1,15 @@
 import React from "react";
 import API from "../api/index";
 
+import Card from "./card";
+
 class List extends React.Component {
   state = {
     characters: []
   };
   componentDidMount() {
     API.getCharacters().then((res) => {
+      console.log(res.data);
       this.setState({
         characters: res.data.results
       });
@@ -17,7 +20,7 @@ class List extends React.Component {
       <div className="List">
         <ul>
           {this.state.characters.map((char) => {
-            return <li key={char.id}>{char.name}</li>;
+            return <Card item={char} key={char.id} />;
           })}
         </ul>
       </div>
